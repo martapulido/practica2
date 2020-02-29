@@ -1,0 +1,150 @@
+---
+title: "Practica_2"
+author: "Marta Pulido López y Juan Manual Martín Jiménez"
+date: "26/2/2020"
+output: 
+  word_document
+bibliography: refs.bib
+link-citations: yes
+csl: apa-no-issue-numbers.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Este documento Word ha sido generado con R Markdown utilizando R versión 3.6.2 (@RStudio) donde se dan respuestas a los ejercicios de la práctica 2 relativos a R Markdown. Además, para la realización de las tablas y gráficas se han usado paquetes adicionales, tales como Tidyverse 1.3.0. (@Tidyverse), Officer 0.3.6. (@Officer) y Flextable  0.5.8. (@Flextable).
+
+
+# 2.1. Responde a las siguientes preguntas:
+
+# (1)	¿Qué es la Ciencia Reproducible? ¿En qué casos se consigue un 100% de la reproducibilidad?
+
+La Ciencia Reproducible es la aquella que permite garantizar que los resultados son perfectamente reproducibles ya que tanto la integración de texto, como el código y los datos incluidos permiten
+regenerar fácilmente el resultado final a partir de los datos originales. 
+
+En la Ciencia Reproducible el análisis completo de datos y el manejo de los mismos se hace mediante código de tal forma que es posible recrear exactamente a partir de los datos originales todos los resultados y figuras incluidos y trazar de forma clara el proceso seguido para  obtener los resultados y reproducirlos.
+
+Se consigue un 100% de reproducibilidad en aquellos casos en los que el análisis completo y el manejo de los datos se ha realizado mediante código.
+
+
+# (2)	¿Cuáles de los beneficios que se sugieren son para ti los más importantes? Justifica tu respuesta.
+
+Los principales beneficios de la Ciencia Reproducible es que se reduce signficaticamente el riesgo de errores, es posible ejecutar tareas repetitivas sin esfuerzo y es muy fácil corregir y regenerar resultados, tablas y figuras. De esta forma, en caso de contener errores, es muy fácil detectarlos y corregirlos con sólo un botón y volver a generar todas las tablas, figuras y resultados de un trabajo, sin tener que usar diferentes cálculos y programas para su actualización.  
+
+Por último, otro de los beneficios que consideramos muy importantes es que contiene un registro de todos los pasos seguidos en el análisis, lo que resulta fácil de compartir entre los colaboradores así como para reutilizarlo pasado un tiempo en el que sería muy difícil repetir cada uno de los pasos seguidos.
+
+
+# (3)	¿Por qué no hace todo el mundo Ciencia Reproducible?
+
+Realizar Ciencia Reproducible requiere dominar técnicas como R, git o rmarkdown cuyo control requiere que el usuario dedique tiempo para aprenderlas y coger soltura. 
+
+Por ello, familiarizarse con estas  herramientas (bases de datos, programación, sistemas de control de versiones) en un principio puede parecer una pérdida de tiempo aunque el tiempo invertido en aprender a utilizar este tipo de herramientas se ve recompensado cuando podemos regenerar todo un manuscrito, tablas y figuras incluidas con un solo clic. 
+
+## 2.2. Lee el artículo “¿Por qué usar GitHub? Diez pasos para disfrutar de GitHub y no morir en el intento” (Galiano 2018) Realiza las siguientes tareas.
+
+
+Como evidencia de creación del repositorio, se puede consultar: [Repositorio](https://github.com/martapulido/practica2.git) 
+
+
+# 2.4. RMarkdown. 
+
+
+## 2.4.1. Generación de un documento de html con varias sintaxis.
+
+Se crean opciones de sintaxis básicas de Pandoc Markdown conforme se solicita:
+
++ Texto plano.
+
++ *Cursiva*
+
++ __Negrita__
+
++ Superíndice^2^: r^2^ 
+
++ *Subíndice~2~: SO~4~
+
++ ~~Tachado~~
+
++ [rstudio](www.rstudio.com)
+
++ Ecuación en línea: $A = \pi*r^{2}$ 
+
++ Ecuación en bloque: $\frac{\sqrt{\lambda} }{n_i}$
+
+# Encabezado 1
+
+## Encabezado 2
+
+### Encabezado 3
+
+#### Encabezado 4
+
+##### Encabezado 5
+
+###### Encabezado 6 
+
+
+## 2.4.2.	Escribe fragmentos de código con las siguientes características:
+
+a.	Peguen las palabras “Hola” y “mundo” en una línea nueva
+
+```{r, collapse=TRUE}
+"Hola"
+
+"Mundo"
+```
+
+
+b.	Peguen las palabras “Hola” y “mundo” en la misma línea de código
+
+```{r}
+paste("Hola", "mundo")
+```
+
+
+c.	Peguen las palabras “Hola” y “mundo” en una línea nueva de código y que no muestren el resultado de R
+
+```{r, eval = FALSE}
+paste("Hola", "mundo")
+```
+
+
+d.	Peguen las palabras “Hola” y “mundo” en una línea nueva de código y que no muestren el resultado de R y que no se muestre en el documento de Word.
+
+
+```{r, include = FALSE}
+paste("Hola", "mundo")
+```
+
+## 3.	Muestra una tabla y una gráfica en el archivo de salida, tomando alguno de los datos que vienen en R o alguno de sus paquetes. ¡¡Se creativo!! Usando (al menos): encabezados, explicaciones, ecuaciones, líneas de código en el texto y bloques de código.
+
+
+```{r}
+
+
+# PENDIENTE MEJORAR ESTE EJERCICIO
+
+library(flextable) #para tablas
+library(officer) #para tablas
+library(tidyverse) #para manejo de datos
+
+data <- iris[c(1:3, 51:53, 101:104),]
+myft <- flextable(
+  data = data, 
+  col_keys = c("Species", "col_1", "Sepal.Length", "Petal.Length") )
+myft <- theme_vanilla(myft)
+myft <- autofit(myft)
+myft <- empty_blanks(myft)
+myft
+
+
+
+```
+
+
+## Referencias: 
+
+
+
