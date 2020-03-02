@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-Este documento Word ha sido generado con R Markdown utilizando R versión 3.6.2 (@RStudio) donde se dan respuestas a los ejercicios de la práctica 2 relativos a R Markdown. Además, para la realización de las tablas y gráficas se han usado paquetes adicionales, tales como Tidyverse 1.3.0. (@Tidyverse), Officer 0.3.6. (@Officer) y Flextable  0.5.8. (@Flextable).
+En este documento se dan respuestas a los ejercicios de la práctica 2, el cual ha sido generado con R Markdown utilizando R versión 3.6.2 (@RStudio). Además, para la realización de las tablas y gráficas se han usado paquetes adicionales, tales como Tidyverse 1.3.0. (@Tidyverse), Officer 0.3.6. (@Officer) y Flextable  0.5.8. (@Flextable).
 
 
 # 2.1. Responde a las siguientes preguntas:
@@ -46,6 +46,15 @@ Por ello, familiarizarse con estas  herramientas (bases de datos, programación,
 
 
 Como evidencia de creación del repositorio, se puede consultar: [Repositorio](https://github.com/martapulido/practica2.git) 
+
+
+## 2.3. Lee “¿Por qué usar GitHub? Diez pasos para disfrutar de GitHub y no morir en el intento”. Comprueba que tienes “claro” los siguientes conceptos:
+
+-	Repositorio: es un directorio público o privado en el que se guardan los archivos que contiene git y que git monitorea.
+-	Rama: es una especie de copia que permite realizar modificaciones en respositorios sin modificar los archivos originales. Git permite crear una especie de línea paralela de trabajo que posteriormente analizará si detecta conflicto la línea principal u otras y que se podrá unir a la rama principal posteriormente si el responsable del respositorio lo autoriza. Es útil para trabajar varias personas a la vez ya que registra las modificaciones que se realizan e informa al responsable de los cambios, quien puede o no aceptar los cambios.
+-	Pull and push: pull permite descargar las actualizaciones del repositorio y push permite subir las modificaciones al respositorio.
+-	Fork: permite hacer una copia de repositorios ajenos.
+
 
 
 # 2.4. RMarkdown. 
@@ -121,26 +130,21 @@ paste("Hola", "mundo")
 ## 3.	Muestra una tabla y una gráfica en el archivo de salida, tomando alguno de los datos que vienen en R o alguno de sus paquetes. ¡¡Se creativo!! Usando (al menos): encabezados, explicaciones, ecuaciones, líneas de código en el texto y bloques de código.
 
 
+
 ```{r}
 
 
 # PENDIENTE MEJORAR ESTE EJERCICIO
 
-library(flextable) #para tablas
-library(officer) #para tablas
-library(tidyverse) #para manejo de datos
-
-data <- iris[c(1:3, 51:53, 101:104),]
-myft <- flextable(
-  data = data, 
-  col_keys = c("Species", "col_1", "Sepal.Length", "Petal.Length") )
-myft <- theme_vanilla(myft)
-myft <- autofit(myft)
-myft <- empty_blanks(myft)
-myft
 
 
-
+grafico <- ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, colour = Species)) # Creamos gráfico de ancho y longitud del sepalo con colores en función de la especie
+grafico <- grafico + geom_point(aes(shape = Species)) # añadimos la capa con geom_point donde incluimos diferentes geometrias de puntos en función de la especie
+grafico <- grafico + xlab("Longitud del sépalo") + ylab("Ancho del sépalo") # incluimos nombres en español a los ejes
+grafico <- grafico + geom_smooth(method = "lm") # incluye una regresión lineal con la tendencia de los datos
+grafico <- grafico + facet_grid(Species ~ . ) # incluimos un faceteado que divide el grafico en diferentes graficos en funcion de la especie
+grafico <- grafico + theme_bw()
+grafico
 ```
 
 
